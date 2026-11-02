@@ -16,7 +16,9 @@ concurrency:
 
 jobs:
   quality-gate:
-    runs-on: ubuntu-latest
+    # 钉死 runner 系统版本：ubuntu-latest 会随 GitHub 滚动升级（已滚到 26.04），
+    # 而 .python-version 锁定的 3.13.7 只有 22.04/24.04 构建，26.04 上会解析失败。
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout source
         uses: actions/checkout@v7
